@@ -1,0 +1,73 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Common helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isUser(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Admin check via custom claims
+    // TODO: Set admin custom claims for privileged users who can manage events
+    // Example (Node.js Admin SDK):
+    //   admin.auth().setCustomUserClaims('<UID>', { admin: true })
+    // After setting, have the client refresh their ID token
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.admin == true;
+    }
+
+    // Check trip ownership by reading the trip document
+    function isTripOwner(tripId) {
+      return isSignedIn() &&
+        get(/databases/$(database)/documents/trips/$(tripId)).data.ownerId == request.auth.uid;
+    }
+
+    // USERS: each user can read/write their own user_profile doc
+    match /users/{userId} {
+      allow read: if isUser(userId);
+      allow create: if isUser(userId);
+      // Prevent changing the document ID (uid mismatch) or transferring ownership
+      allow update, delete: if isUser(userId);
+    }
+
+    // TRIPS: readable and writable only by the owner
+    match /trips/{tripId} {
+      // Read if the caller owns the trip
+      allow read: if isSignedIn() && resource.data.ownerId == request.auth.uid;
+
+      // Create only if the ownerId matches the caller
+      allow create: if isSignedIn() && request.resource.data.ownerId == request.auth.uid;
+
+      // Update/Delete only if the caller owns the trip and ownerId is immutable
+      allow update, delete: if isSignedIn() &&
+        resource.data.ownerId == request.auth.uid &&
+        request.resource.data.ownerId == resource.data.ownerId;
+    }
+
+    // EXPENSES: readable and writable only by the trip owner
+    match /expenses/{expenseId} {
+      // Read allowed if the caller owns the linked trip
+      allow read: if isSignedIn() && isTripOwner(resource.data.tripId);
+
+      // Create allowed if the caller owns the trip referenced in the new doc
+      allow create: if isSignedIn() && isTripOwner(request.resource.data.tripId);
+
+      // Update/Delete allowed if the caller owns the linked trip and tripId is immutable
+      allow update, delete: if isSignedIn() &&
+        isTripOwner(resource.data.tripId) &&
+        request.resource.data.tripId == resource.data.tripId;
+    }
+
+    // EVENTS: public read, writes restricted to admins
+    match /events/{eventId} {
+      allow read: if true; // Publicly readable
+
+      // TODO: Consider additional validation for event fields (e.g., name length, date types)
+      // Writes restricted to users with admin custom claim
+      allow create, update, delete: if isAdmin();
+    }
+  }
+}

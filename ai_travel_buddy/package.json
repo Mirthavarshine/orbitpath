@@ -1,0 +1,29 @@
+{
+  "name": "ai-travel-buddy",
+  "version": "1.0.0",
+  "description": "AI Travel Buddy - Intelligent travel planning app",
+  "scripts": {
+    "build:web": "flutter build web --release",
+    "deploy:web": "flutter build web --release && firebase deploy --only hosting",
+    "deploy:all": "flutter build web --release && firebase deploy",
+    "deploy:functions": "cd ../functions && npm run build && firebase deploy --only functions",
+    "deploy:rules": "firebase deploy --only firestore:rules",
+    "analyze": "flutter analyze",
+    "test": "flutter test",
+    "clean": "flutter clean",
+    "get": "flutter pub get"
+  },
+  "keywords": [
+    "flutter",
+    "travel",
+    "ai",
+    "firebase",
+    "web"
+  ],
+  "author": "AI Travel Buddy Team",
+  "license": "MIT",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+} 
