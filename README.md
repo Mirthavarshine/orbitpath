@@ -11,7 +11,7 @@
 
 ## 🎯 Live Demo
 
-**🌐 [View Live App](https://orbitpath.web.app)**
+**🌐 [View Live App](https://orbitpath.web.app)** ✅ **LIVE**
 
 > **💡 Note**: If the live demo doesn't open, please check screenshots in the repo below.
 
