@@ -11,7 +11,9 @@
 
 ## 🎯 Live Demo
 
-**🌐 [View Live App](https://ai-travel-buddy-app.web.app)**
+**🌐 [View Live App](https://orbitpath.web.app)**
+
+> **💡 Note**: If the live demo doesn't open, please check screenshots in the repo below.
 
 ---
 
@@ -86,7 +88,7 @@ flutter run -d chrome
 ./deploy.sh
 ```
 
-**Your app will be live at**: `https://ai-travel-buddy-app.web.app`
+**Your app will be live at**: `https://orbitpath.web.app`
 
 ---
 
@@ -98,6 +100,63 @@ flutter run -d chrome
 | 📱 **Mobile** | ✅ Ready | Flutter framework for iOS/Android |
 | 🖥️ **Desktop** | ✅ Ready | macOS, Windows, Linux support |
 | 🔄 **Offline** | ✅ Capable | Works without internet connection |
+
+---
+
+## 📸 Screenshots
+
+### 🏠 **Home Dashboard**
+![Home Dashboard](assets/screenshots/home-dashboard.png)
+*Main dashboard with navigation and quick access to features*
+
+### 🧭 **AI Planner**
+![AI Planner](assets/screenshots/ai-planner.png)
+*AI-powered itinerary planning interface*
+
+### 💸 **Expense Tracking**
+![Expense Tracking](assets/screenshots/expense-tracking.png)
+*Expense management with charts and analytics*
+
+### 🗺️ **Trip Details**
+![Trip Details](assets/screenshots/trip-details.png)
+*Detailed trip view with itinerary and weather*
+
+### 👤 **User Profile**
+![User Profile](assets/screenshots/user-profile.png)
+*User profile and preferences management*
+
+> **📱 Mobile & Desktop**: The app is fully responsive and works seamlessly across all devices.
+
+---
+
+## 🎮 How to Use
+
+### **1. Getting Started**
+1. **Visit**: https://orbitpath.web.app
+2. **Sign In**: Use Google Sign-in or create an account
+3. **Explore**: Navigate through the bottom navigation tabs
+
+### **2. Plan Your Trip**
+1. **Go to Planner**: Tap the "Planner" tab
+2. **Enter Details**: Destination, dates, budget, interests
+3. **Generate**: Click "Generate Itinerary" for AI-powered plans
+4. **Save**: Save your trip to your profile
+
+### **3. Track Expenses**
+1. **Expenses Tab**: View your spending dashboard
+2. **Add Expense**: Use the + button to add new expenses
+3. **Categories**: Organize by food, transport, accommodation, etc.
+4. **Analytics**: View charts and spending insights
+
+### **4. Explore & Discover**
+1. **Explore Tab**: Find AI suggestions and nearby attractions
+2. **Trip Details**: View full itineraries with weather info
+3. **Maps**: Interactive maps for locations and directions
+
+### **5. Manage Profile**
+1. **Profile Tab**: Update your preferences and settings
+2. **Interests**: Select your travel interests
+3. **Budget Range**: Set your default budget preferences
 
 ---
 
